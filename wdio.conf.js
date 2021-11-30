@@ -1,4 +1,4 @@
-export const config: WebdriverIO.Config = {
+const configToExport = {
     //
     // ====================
     // Runner Configuration
@@ -140,6 +140,7 @@ export const config: WebdriverIO.Config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
+        requires: ['tsconfig-paths/register'],
         ui: 'bdd',
         timeout: 60000
     },
@@ -282,3 +283,5 @@ export const config: WebdriverIO.Config = {
     //onReload: function(oldSessionId, newSessionId) {
     //}
 }
+
+exports.config = configToExport;
