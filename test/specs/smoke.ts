@@ -1,17 +1,18 @@
-import * as crypto from 'crypto'
 
 describe('Website', function() {
 
-    it('should be alive',function() {
+    it.skip('should be alive',function() {
         browser.url('/');
         expect($('#logo')).toBeDisplayed()
     })
     it('should allow uswer to register', function () {
         browser.url('/simpleregister/')
+        browser.pause(1000000)
         const simplepage_form = $('#simplepage_form')
 
         const email = simplepage_form.$('#register_email')
-        email.setValue(`Test+${Date.now}@gmail.com`)
+        const emailString = `Test+${Date.now()}@gmail.com`
+        email.setValue(emailString)
 
         const password = simplepage_form.$('#register_password')
         password.setValue('Qwerty123')
@@ -43,6 +44,10 @@ describe('Website', function() {
         const address_1 = simplepage_form.$('#register_address_1')
         address_1.setValue('12')
 
+        const button_confirm = simplepage_form.$('3simpleregister_button_confirm')
+        button_confirm.click()
+
+        browser.pause(1000000000)
 
     })
 })
