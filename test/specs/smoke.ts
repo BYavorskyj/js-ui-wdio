@@ -1,13 +1,20 @@
 
 describe('Website', function() {
+    // const locator = .css('#logo')
 
     it.skip('should be alive',function() {
         browser.url('/');
-        expect($('#logo')).toBeDisplayed()
+        expect($('#logo')).toBeDisplayed({
+            wait: 1000
+        })
     })
     it('should allow uswer to register', function () {
         browser.url('/simpleregister/')
         browser.pause(1000000)
+        expect($('#simplepage_form')).toBeDisplayed({
+            wait: 10000000
+        })
+
         const simplepage_form = $('#simplepage_form')
 
         const email = simplepage_form.$('#register_email')
@@ -44,10 +51,12 @@ describe('Website', function() {
         const address_1 = simplepage_form.$('#register_address_1')
         address_1.setValue('12')
 
-        const button_confirm = simplepage_form.$('3simpleregister_button_confirm')
+        const button_confirm = simplepage_form.$('simpleregister_button_confirm')
         button_confirm.click()
 
-        browser.pause(1000000000)
+        browser.pause(1000000)
 
+        expect(simplepage_form.$('h1')).toHaveText('Облікова запис успішно створена!')
+        browser.pause(1000000)
     })
 })
